@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inicio - Residencial Los Robles</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f5f7f9;
+        color: #333;
+      }
+
+      .navbar {
+        background-color: #2d5c27;
+        padding: 0.5rem 1rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        color: white;
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+
+      .nav-logo .logo-img {
+        height: 40px;
+        margin-right: 10px;
+        border-radius: 5px;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 1.5rem;
+      }
+
+      .nav-link {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-link.logout {
+        color: #ff6b6b;
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+      }
+
+      .bar {
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        margin: 3px 0;
+        transition: 0.3s;
+      }
+
+      .banner {
+        background: linear-gradient(135deg, #2d5c27 0%, #3a7c32 100%);
+        color: white;
+        padding: 2rem 1rem;
+        text-align: center;
+      }
+
+      .banner-content {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .banner h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .banner p {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+      }
+
+      .banner-btn {
+        background-color: white;
+        color: #2d5c27;
+        border: none;
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .banner-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .dashboard-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+
+      .welcome-section {
+        margin-bottom: 2rem;
+      }
+
+      .welcome-section h1 {
+        color: #2d5c27;
+        margin-bottom: 0.5rem;
+      }
+
+      .welcome-section p {
+        color: #666;
+      }
+
+      .shortcuts-section {
+        margin-bottom: 3rem;
+      }
+
+      .shortcuts-section h2 {
+        margin-bottom: 1.5rem;
+        color: #2d5c27;
+      }
+
+      .shortcuts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .shortcut-card {
+        background-color: white;
+        border-radius: 10px;
+        padding: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+        text-align: center;
+      }
+
+      .shortcut-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .shortcut-icon {
+        width: 60px;
+        height: 60px;
+        background-color: #e8f5e9;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        color: #2d5c27;
+        font-size: 1.5rem;
+      }
+
+      .shortcut-card h3 {
+        margin-bottom: 0.5rem;
+        color: #2d5c27;
+      }
+
+      .shortcut-card p {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      /* Sección de información */
+      .info-section {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+      }
+
+      .recent-activity h2,
+      .financial-summary h2 {
+        margin-bottom: 1.5rem;
+        color: #2d5c27;
+      }
+
+      .activity-list {
+        background-color: white;
+        border-radius: 10px;
+        padding: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .activity-item {
+        display: flex;
+        padding: 1rem 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .activity-item:last-child {
+        border-bottom: none;
+      }
+
+      .activity-icon {
+        width: 40px;
+        height: 40px;
+        background-color: #e8f5e9;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #2d5c27;
+        margin-right: 1rem;
+        flex-shrink: 0;
+      }
+
+      .activity-content h4 {
+        margin-bottom: 0.3rem;
+        color: #333;
+      }
+
+      .activity-content p {
+        color: #666;
+        margin-bottom: 0.3rem;
+        font-size: 0.9rem;
+      }
+
+      .activity-time {
+        color: #999;
+        font-size: 0.8rem;
+      }
+
+      .summary-card {
+        background-color: white;
+        border-radius: 10px;
+        padding: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .summary-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .summary-item:last-child {
+        border-bottom: none;
+      }
+
+      .summary-label {
+        color: #666;
+      }
+
+      .summary-value {
+        font-weight: bold;
+        color: #333;
+      }
+
+      .summary-status.paid {
+        color: #28a745;
+        font-weight: bold;
+      }
+
+      .summary-btn {
+        width: 100%;
+        background-color: #2d5c27;
+        color: white;
+        border: none;
+        padding: 0.8rem;
+        border-radius: 5px;
+        margin-top: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .summary-btn:hover {
+        background-color: #224920;
+      }
+
+      @media screen and (max-width: 768px) {
+        .hamburger {
+          display: flex;
+        }
+
+        .nav-menu {
+          position: fixed;
+          left: -100%;
+          top: 60px;
+          flex-direction: column;
+          background-color: #2d5c27;
+          width: 100%;
+          text-align: center;
+          transition: 0.3s;
+          box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+          padding: 1rem 0;
+          gap: 0;
+        }
+
+        .nav-menu.active {
+          left: 0;
+        }
+
+        .nav-item {
+          margin: 0.5rem 0;
+        }
+
+        .info-section {
+          grid-template-columns: 1fr;
+        }
+
+        .shortcuts-grid {
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .shortcuts-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .banner h2 {
+          font-size: 1.5rem;
+        }
+
+        .banner p {
+          font-size: 1rem;
+        }
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        background-color: rgba(245, 247, 249, 0.8);
+        color: #666;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <img
+            src="./Robles connect.jpg"
+            alt="Logo Robles Connect"
+            class="logo-img"
+          />
+          <span>Los Robles residencial</span>
+        </div>
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item">
+            <a href="#" class="nav-link active"
+              ><i class="fas fa-home"></i> Inicio</a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link"
+              ><i class="fas fa-file-invoice-dollar"></i> Estado de Cuenta</a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link"
+              ><i class="fas fa-credit-card"></i> Pagar en Línea</a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link"
+              ><i class="fas fa-chart-line"></i> Transparencia</a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link"
+              ><i class="fas fa-calendar-alt"></i> Reservas</a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link"
+              ><i class="fas fa-bullhorn"></i> Comunicados</a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link"
+              ><i class="fas fa-cog"></i> Configuración</a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="login.html" class="nav-link logout"
+              ><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a
+            >
+          </li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </nav>
+
+    <div class="banner">
+      <div class="banner-content">
+        <h2>¡Nuevo Sistema de Pagos!</h2>
+        <p>
+          Ahora puedes realizar tus pagos de mantenimiento en línea de forma
+          segura y rápida.
+        </p>
+        <button class="banner-btn">Conoce más</button>
+      </div>
+    </div>
+
+    <main class="dashboard-container">
+      <div class="welcome-section">
+        <h1>Bienvenido, <span id="user-name">Residente</span></h1>
+        <p id="current-date">Miércoles, 25 de Octubre de 2025</p>
+      </div>
+
+      <div class="shortcuts-section">
+        <h2>Accesos Rápidos</h2>
+        <div class="shortcuts-grid">
+          <div class="shortcut-card" onclick="location.href='#'">
+            <div class="shortcut-icon">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <h3>Pagar en Línea</h3>
+            <p>Realiza tus pagos de manera segura.</p>
+          </div>
+
+          <div class="shortcut-card" onclick="location.href='#'">
+            <div class="shortcut-icon">
+              <i class="fas fa-file-invoice-dollar"></i>
+            </div>
+            <h3>Estado de Cuenta</h3>
+            <p>Consulta tu saldo y movimientos.</p>
+          </div>
+
+          <div class="shortcut-card" onclick="location.href='#'">
+            <div class="shortcut-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Transparencia Financiera</h3>
+            <p>Información sobre los recursos del residencial.</p>
+          </div>
+
+          <div class="shortcut-card" onclick="location.href='#'">
+            <div class="shortcut-icon">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <h3>Reservar Áreas</h3>
+            <p>Reserva áreas comunes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-section">
+        <div class="recent-activity">
+          <h2>Actividad Reciente</h2>
+          <div class="activity-list">
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-money-bill-wave"></i>
+              </div>
+              <div class="activity-content">
+                <h4>Pago realizado</h4>
+                <p>Mantenimiento mensual - $1,500.00 MXN</p>
+                <span class="activity-time">Hace 2 días</span>
+              </div>
+            </div>
+
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-bullhorn"></i>
+              </div>
+              <div class="activity-content">
+                <h4>Nuevo comunicado</h4>
+                <p>Junta de condóminos el viernes 24 de octubre del 2025.</p>
+                <span class="activity-time">Hace 3 días</span>
+              </div>
+            </div>
+
+            <div class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-tools"></i>
+              </div>
+              <div class="activity-content">
+                <h4>Mantenimiento programado</h4>
+                <p>
+                  Limpieza y poda de césped de áreas comunes el 13 de septiembre
+                  del 2025.
+                </p>
+                <span class="activity-time">Hace 5 días</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="financial-summary">
+          <h2>Resumen Financiero</h2>
+          <div class="summary-card">
+            <div class="summary-item">
+              <span class="summary-label">Saldo Actual</span>
+              <span class="summary-value">$1,200.00 MXN</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Próximo Vencimiento</span>
+              <span class="summary-value">25 de Octubre, 2025</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Estado</span>
+              <span class="summary-status paid">Al corriente</span>
+            </div>
+            <button class="summary-btn">Ver Detalles</button>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>Residencial Los Robles © 2025. Todos los derechos reservados.</p>
+      </footer>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const hamburger = document.getElementById("hamburger");
+        const navMenu = document.getElementById("nav-menu");
+
+        const userData = JSON.parse(localStorage.getItem("currentUser"));
+        if (userData && userData.nombre) {
+          document.getElementById("user-name").textContent = userData.nombre;
+        }
+
+        const now = new Date();
+        const options = {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        };
+        document.getElementById("current-date").textContent =
+          now.toLocaleDateString("es-ES", options);
+
+        hamburger.addEventListener("click", function () {
+          navMenu.classList.toggle("active");
+          hamburger.classList.toggle("active");
+        });
+
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.addEventListener("click", function () {
+            navMenu.classList.remove("active");
+            hamburger.classList.remove("active");
+          });
+        });
+
+        document.addEventListener("click", function (event) {
+          if (!event.target.closest(".nav-container")) {
+            navMenu.classList.remove("active");
+            hamburger.classList.remove("active");
+          }
+        });
+
+        document
+          .querySelector(".banner-btn")
+          .addEventListener("click", function () {
+            alert("¡Próximamente estarán disponibles los pagos en línea!");
+          });
+
+        document
+          .querySelector(".summary-btn")
+          .addEventListener("click", function () {
+            alert("Redirigiendo a detalles de estado de cuenta...");
+          });
+
+        console.log("Homepage cargada correctamente");
+      });
+    </script>
+  </body>
+</html>
+

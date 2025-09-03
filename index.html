@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Los Robles Residencial: Registro de usuarios</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo-container">
+          <img
+            id="main-logo"
+            class="logo-img main-logo"
+            src="https://placehold.co/200x70/ffffff/2d5c27?text=Los+Robles"
+            alt="Logo Residencial Los Robles"
+          />
+          <img
+            id="app-logo"
+            class="logo-img app-logo"
+            src="https://placehold.co/60x60/ffffff/2d5c27?text=RC"
+            alt="Logo Robles Connect"
+          />
+        </div>
+        <h1>Residencial Los Robles</h1>
+        <p class="subtitle">Sistema de registro de residentes</p>
+      </header>
+
+      <div class="space">
+        <p>Regístrate</p>
+      </div>
+
+      <div class="content">
+        <div class="image-section">
+          <h2>Bienvenido a tu hogar</h2>
+          <p>
+            Regístrese para acceder a todos los servicios y beneficios de que te
+            ofrece tu residencial.
+          </p>
+
+          <ul class="features">
+            <li>
+              <span class="feature-icon">✓</span> Acceso controlado las 24
+              horas.
+            </li>
+            <li>
+              <span class="feature-icon">✓</span> Áreas comunes exclusivas.
+            </li>
+            <li>
+              <span class="feature-icon">✓</span> Pago de servicios de
+              mantenimiento.
+            </li>
+            <li>
+              <span class="feature-icon">✓</span> Comunicados importantes y
+              noticias.
+            </li>
+            <li>
+              <span class="feature-icon">✓</span> Reserva de instalaciones.
+            </li>
+            <li>
+              <span class="feature-icon">✓</span>Consulta tu estado de cuenta.
+            </li>
+            <li>
+              <span class="feature-icon">✓</span>Mantente enterado de los
+              reportes financieros del residencial.
+            </li>
+            <li>
+              <span class="feature-icon">✓</span>Participa en las elecciones de
+              condominos.
+            </li>
+            <li>
+              <span class="feature-icon">✓</span>Reportes ante incidentes o
+              emergencias.
+            </li>
+          </ul>
+        </div>
+
+        <div class="form-section">
+          <div class="form-container">
+            <h3 class="form-title">Complete sus datos</h3>
+            <div id="registration-root"></div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>Residencial Los Robles © 2025. Todos los derechos reservados.</p>
+      </footer>
+    </div>
+
+    <script type="text/babel" src="index.js"></script>
+  </body>
+</html>

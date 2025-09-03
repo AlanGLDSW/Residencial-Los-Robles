@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Los Robles Residencial: Inicio de sesión</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo-container">
+          <img
+            id="main-logo"
+            class="logo-img main-logo"
+            src="https://placehold.co/200x70/ffffff/2d5c27?text=Los+Robles"
+            alt="Logo Residencial Los Robles"
+          />
+          <img
+            id="app-logo"
+            class="logo-img app-logo"
+            src="https://placehold.co/60x60/ffffff/2d5c27?text=RC"
+            alt="Logo Robles Connect"
+          />
+        </div>
+        <h1>Residencial Los Robles</h1>
+        <p class="subtitle">Sistema de acceso para residentes</p>
+      </header>
+
+      <div class="space">
+        <p>Iniciar Sesión</p>
+      </div>
+
+      <div class="content">
+        <div class="image-section">
+          <h2>Bienvenido de vuelta</h2>
+          <p>
+            Accede a tu cuenta para gestionar todos los servicios de tu
+            residencial.
+          </p>
+
+          <ul class="features">
+            <li>
+              <span class="feature-icon">✓</span> Acceso seguro las 24 horas.
+            </li>
+            <li>
+              <span class="feature-icon">✓</span> Gestiona tus pagos y
+              servicios.
+            </li>
+            <li>
+              <span class="feature-icon">✓</span> Mantente informado con las
+              noticias.
+            </li>
+            <li><span class="feature-icon">✓</span> Reserva áreas comunes.</li>
+            <li>
+              <span class="feature-icon">✓</span> Consulta tu estado de cuenta.
+            </li>
+          </ul>
+        </div>
+
+        <div class="form-section">
+          <div class="form-container">
+            <h3 class="form-title">Ingresa a tu cuenta</h3>
+            <div id="login-root"></div>
+            <div class="login-links">
+              <p>¿No tienes cuenta? <a href="index.html">Regístrate aquí</a></p>
+              <p><a href="#">¿Olvidaste tu contraseña?</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>Residencial Los Robles © 2025. Todos los derechos reservados.</p>
+      </footer>
+    </div>
+
+    <script type="text/babel" src="login.js"></script>
+  </body>
+</html>
+
