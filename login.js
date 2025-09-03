@@ -194,11 +194,11 @@ const LoginForm = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   alert(
-                    "Políticas de privacidad: [Aquí va el texto de tus políticas]"
+                    "Políticas de privacidad: [Aquí va el documento de las políticas de privacidad del residencial]"
                   );
                 }}
               >
-                políticas de privacidad
+                "Políticas de privacidad"
               </a>
             </label>
           </div>
@@ -247,4 +247,5 @@ ReactDOM.render(
   React.createElement(LoginForm),
   document.getElementById("login-root")
 );
+
 
