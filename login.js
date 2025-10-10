@@ -134,7 +134,7 @@ const LoginForm = () => {
             value={formData.correo}
             onChange={handleChange}
             required
-            placeholder="example@email.com"
+            placeholder="tucorreo@ejemplo.com"
           />
           {errors.correo && (
             <div className="error-message">{errors.correo}</div>
@@ -142,7 +142,7 @@ const LoginForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="password">Contraseña</label>
+          <label htmlFor="password">Contraseña:</label>
           <input
             type={showPassword ? "text" : "password"}
             id="password"
@@ -247,5 +247,6 @@ ReactDOM.render(
   React.createElement(LoginForm),
   document.getElementById("login-root")
 );
+
 
 
