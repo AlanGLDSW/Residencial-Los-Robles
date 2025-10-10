@@ -204,7 +204,7 @@ const RegistrationForm = () => {
             value={formData.correo}
             onChange={handleChange}
             required
-            placeholder="example@email.com"
+            placeholder="tucorreo@ejemplo.com"
           />
           {errors.correo && (
             <div className="error-message">{errors.correo}</div>
@@ -212,7 +212,7 @@ const RegistrationForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="numeroCasa">Número de casa</label>
+          <label htmlFor="numeroCasa">Número de casa:</label>
           <input
             type="text"
             id="numeroCasa"
@@ -228,7 +228,7 @@ const RegistrationForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="password">Contraseña</label>
+          <label htmlFor="password">Contraseña:</label>
           <input
             type={showPassword ? "text" : "password"}
             id="password"
@@ -268,7 +268,7 @@ const RegistrationForm = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="confirmPassword">Confirmar contraseña</label>
+          <label htmlFor="confirmPassword">Confirmar contraseña:</label>
           <input
             type={showConfirmPassword ? "text" : "password"}
             id="confirmPassword"
@@ -321,3 +321,4 @@ ReactDOM.render(
   <RegistrationForm />,
   document.getElementById("registration-root")
 );
+
