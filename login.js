@@ -113,6 +113,8 @@ const LoginForm = () => {
       setTimeout(() => {
         alert("¡Inicio de sesión exitoso! Bienvenido " + userData.nombre);
 
+        localStorage.setItem("currentUser", JSON.stringify({ nombre: userData.nombre }));
+
         window.location.href = "homepage.html";
       }, 1000);
     } catch (error) {
@@ -221,22 +223,7 @@ const LoginForm = () => {
           ¿No tienes cuenta? <a href="index.html">Regístrate aquí</a>
         </p>
         <p>
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              const email = prompt(
-                "Por favor ingresa tu correo electrónico para restablecer tu contraseña:"
-              );
-              if (email) {
-                alert(
-                  "Se ha enviado un enlace de restablecimiento a: " + email
-                );
-              }
-            }}
-          >
-            ¿Olvidaste tu contraseña?
-          </a>
+          <a href="olvide.html">¿Olvidaste tu contraseña?</a>
         </p>
       </div>
     </div>
@@ -247,6 +234,4 @@ ReactDOM.render(
   React.createElement(LoginForm),
   document.getElementById("login-root")
 );
-
-
 
