@@ -1,5 +1,28 @@
 const { useState, useEffect } = React;
 
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDdzadn645vHWipDBrP64-oeAqU-T7CfUg",
+  authDomain: "formulario-de-registro-60449.firebaseapp.com",
+  projectId: "formulario-de-registro-60449",
+  storageBucket: "formulario-de-registro-60449.firebasestorage.app",
+  messagingSenderId: "611251484860",
+  appId: "1:611251484860:web:7551d611d586fb0381b8b9",
+  measurementId: "G-ZK8E11EL1V"
+};
+
+
+try {
+  firebase.initializeApp(firebaseConfig);
+  console.log("Firebase inicializado correctamente");
+} catch (error) {
+  console.error("Error inicializando Firebase:", error);
+}
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
     nombre: "",
@@ -303,6 +326,28 @@ const RegistrationForm = () => {
           {isSubmitting ? "Enviando..." : "Registrarse"}
         </button>
 
+        <button
+          type="button"
+          className="cancel-btn"
+          onClick={() => {
+            
+            setFormData({
+              nombre: "",
+              correo: "",
+              numeroCasa: "",
+              password: "",
+              confirmPassword: "",
+            });
+            setErrors({});
+            
+          }}
+        >Cancelar
+        </button>
+
+          <div class="login-link">
+            <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+          </div>
+
         {errors.submit && <div className="error-message">{errors.submit}</div>}
       </form>
 
@@ -321,4 +366,3 @@ ReactDOM.render(
   <RegistrationForm />,
   document.getElementById("registration-root")
 );
-
