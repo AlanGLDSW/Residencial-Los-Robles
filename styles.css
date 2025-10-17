@@ -251,6 +251,42 @@ input:focus {
   background-color: #224920;
 }
 
+.cancel-btn {
+  background-color: #ccc;
+  color: #333;
+  width: 100%;
+  padding: 14px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.cancel-btn:hover {
+  background-color: #9e9a9a;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.login-link {
+  align-items: center;
+  margin: 15px;
+}
+
+.login-link p {
+  text-align: center;
+}
+
+.login-link a {
+  color: #155724;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
 footer {
   text-align: center;
   padding: 20px;
@@ -322,3 +358,4 @@ footer {
 .login-links a:hover {
   text-decoration: underline;
 }
+
