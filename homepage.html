@@ -97,22 +97,49 @@
         color: white;
         padding: 2rem 1rem;
         text-align: center;
+        position: relative;
+        overflow: hidden;
+        height: 400px;
       }
 
-      .banner-content {
+      .slides-container {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        height: 100%;
+      }
+
+      .slide {
+        min-width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #2d5c27 0%, #3a7c32 100%);
+        color: white;
+        padding: 2rem 1rem;
+        text-align: center;
+      }
+
+      .slide-content {
         max-width: 1200px;
         margin: 0 auto;
       }
 
-      .banner h2 {
+      .slide h2 {
         font-size: 2rem;
         margin-bottom: 1rem;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.8s ease forwards;
       }
 
-      .banner p {
+      .slide p {
         font-size: 1.2rem;
         margin-bottom: 1.5rem;
         opacity: 0.9;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.8s ease 0.2s forwards;
       }
 
       .banner-btn {
@@ -124,11 +151,76 @@
         font-weight: bold;
         cursor: pointer;
         transition: transform 0.3s, box-shadow 0.3s;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.8s ease 0.4s forwards;
       }
 
       .banner-btn:hover {
         transform: translateY(-3px);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .carousel-indicators {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      .indicator.active {
+        background-color: white;
+        transform: scale(1.2);
+      }
+
+      .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: background-color 0.3s;
+        z-index: 10;
+      }
+
+      .carousel-arrow:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      .carousel-arrow.prev {
+        left: 20px;
+      }
+
+      .carousel-arrow.next {
+        right: 20px;
       }
 
       .dashboard-container {
@@ -203,7 +295,6 @@
         font-size: 0.9rem;
       }
 
-      /* Sección de información */
       .info-section {
         display: grid;
         grid-template-columns: 2fr 1fr;
@@ -430,16 +521,51 @@
       </div>
     </nav>
 
-    <div class="banner">
-      <div class="banner-content">
-        <h2>¡Nuevo Sistema de Pagos!</h2>
-        <p>
-          Ahora puedes realizar tus pagos de mantenimiento en línea de forma
-          segura y rápida.
-        </p>
-        <button class="banner-btn">Conoce más</button>
-      </div>
-    </div>
+        <div class="banner">
+          <div class="slides-container" id="slides-container">
+            <div class="slide">
+              <div class="slide-content">
+                <h2>¡Nuevo Sistema de Pagos!</h2>
+                <p>
+                  Ahora puedes realizar tus pagos de mantenimiento en línea de forma
+                  segura y rápida.
+                </p>
+                <button class="banner-btn">Conoce más</button>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="slide-content">
+                <h2>Consulta tu estado de cuenta.</h2>
+                <p>
+                  Consulta y descarga tu historial de pagos.
+                </p>
+                <button class="banner-btn">Consúltalo ahora</button>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="slide-content">
+                <h2>Informes financieros.</h2>
+                <p>
+                  Conoce el destino de tus aportaciones. 
+                </p>
+                <button class="banner-btn">Ver detalles</button>
+              </div>
+            </div>
+          </div>
+          
+          <button class="carousel-arrow prev" id="prev-btn">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="carousel-arrow next" id="next-btn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          
+          <div class="carousel-indicators" id="indicators">
+            <span class="indicator active" data-slide="0"></span>
+            <span class="indicator" data-slide="1"></span>
+            <span class="indicator" data-slide="2"></span>
+          </div>
+        </div>
 
     <main class="dashboard-container">
       <div class="welcome-section">
@@ -505,8 +631,8 @@
               </div>
               <div class="activity-content">
                 <h4>Nuevo comunicado</h4>
-                <p>Junta de condóminos el viernes 24 de octubre del 2025.</p>
-                <span class="activity-time">Hace 3 días</span>
+                <p>Primera junta de asamblea de condóminos el viernes 28 de noviembre del 2025.</p>
+                <span class="activity-time">Hace 2 días</span>
               </div>
             </div>
 
@@ -517,7 +643,7 @@
               <div class="activity-content">
                 <h4>Mantenimiento programado</h4>
                 <p>
-                  Limpieza y poda de césped de áreas comunes el 13 de septiembre
+                  Limpieza y poda de césped de áreas comunes el 24 de octubre
                   del 2025.
                 </p>
                 <span class="activity-time">Hace 5 días</span>
@@ -531,11 +657,11 @@
           <div class="summary-card">
             <div class="summary-item">
               <span class="summary-label">Saldo Actual</span>
-              <span class="summary-value">$1,200.00 MXN</span>
+              <span class="summary-value">$1,500.00 MXN</span>
             </div>
             <div class="summary-item">
               <span class="summary-label">Próximo Vencimiento</span>
-              <span class="summary-value">25 de Octubre, 2025</span>
+              <span class="summary-value">25 de Noviembre, 2025</span>
             </div>
             <div class="summary-item">
               <span class="summary-label">Estado</span>
@@ -604,7 +730,82 @@
 
         console.log("Homepage cargada correctamente");
       });
+
+        const slidesContainer = document.getElementById("slides-container");
+        const slides = document.querySelectorAll(".slide");
+        const indicators = document.querySelectorAll(".indicator");
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
+        
+        let currentSlide = 0;
+        let slideInterval;
+        const slideDuration = 3000; 
+
+        function goToSlide(slideIndex) {
+
+          if (slideIndex < 0) {
+            slideIndex = slides.length - 1;
+          } else if (slideIndex >= slides.length) {
+            slideIndex = 0;
+          }
+          
+          slidesContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
+          
+          indicators.forEach((indicator, index) => {
+            if (index === slideIndex) {
+              indicator.classList.add("active");
+            } else {
+              indicator.classList.remove("active");
+            }
+          });
+          
+          currentSlide = slideIndex;
+        }
+
+        function nextSlide() {
+          goToSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+          goToSlide(currentSlide - 1);
+        }
+
+        function startAutoSlide() {
+          slideInterval = setInterval(nextSlide, slideDuration);
+        }
+
+        function stopAutoSlide() {
+          clearInterval(slideInterval);
+        }
+
+        prevBtn.addEventListener("click", function() {
+          stopAutoSlide();
+          prevSlide();
+          startAutoSlide();
+        });
+
+        nextBtn.addEventListener("click", function() {
+          stopAutoSlide();
+          nextSlide();
+          startAutoSlide();
+        });
+
+        indicators.forEach(indicator => {
+          indicator.addEventListener("click", function() {
+            stopAutoSlide();
+            const slideIndex = parseInt(this.getAttribute("data-slide"));
+            goToSlide(slideIndex);
+            startAutoSlide();
+          });
+        });
+
+        slidesContainer.addEventListener("mouseenter", stopAutoSlide);
+        slidesContainer.addEventListener("mouseleave", startAutoSlide);
+
+        startAutoSlide();
+
     </script>
   </body>
 </html>
+
 
