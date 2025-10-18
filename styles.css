@@ -338,7 +338,7 @@ footer {
   font-size: 14px;
 }
 
-button {
+.pass-toggle {
   width: 100%;
   background-color: #2d5c27;
   color: white;
@@ -351,11 +351,11 @@ button {
   margin-bottom: 1rem;
 }
 
-button:hover {
+.pass-toggle:hover {
   background-color: #224920;
 }
 
-button:disabled {
+.pass-toggle:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
 }
@@ -424,5 +424,6 @@ button:disabled {
 .login-links a:hover {
   text-decoration: underline;
 }
+
 
 
