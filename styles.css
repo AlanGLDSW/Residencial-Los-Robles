@@ -251,7 +251,6 @@ input:focus {
   background-color: #224920;
 }
 
-/* Estos dos estilos agregue*/
 .cancel-btn {
   background-color: #ccc;
   color: #333;
@@ -338,28 +337,6 @@ footer {
   font-size: 14px;
 }
 
-.pass-toggle {
-  width: 100%;
-  background-color: #2d5c27;
-  color: white;
-  border: none;
-  padding: 0.8rem;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-bottom: 1rem;
-}
-
-.pass-toggle:hover {
-  background-color: #224920;
-}
-
-.pass-toggle:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-
 
 @media (max-width: 768px) {
   .content {
@@ -424,6 +401,7 @@ footer {
 .login-links a:hover {
   text-decoration: underline;
 }
+
 
 
 
