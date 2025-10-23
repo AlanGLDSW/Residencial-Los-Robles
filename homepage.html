@@ -9,7 +9,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <style>
-      * {
+           * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -161,6 +161,16 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       }
 
+      .banner-btn a {
+        color: #2d5c27;
+        text-decoration: none;
+      }
+
+      .banner-btn a:hover {
+        text-decoration: underline;
+        transform: scale(1.2);
+      }
+
       @keyframes fadeInUp {
         to {
           opacity: 1;
@@ -272,6 +282,15 @@
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
       }
 
+      .shortcut-card a {
+        color: #2d5c27;
+        text-decoration: none;
+      }
+
+      .shortcut-card a:hover {
+        text-decoration: underline;
+      }
+
       .shortcut-icon {
         width: 60px;
         height: 60px;
@@ -381,7 +400,7 @@
       }
 
       .summary-status.paid {
-        color: #28a745;
+        color: #eb1f1f; /*#28a745 y #eb1f1f */
         font-weight: bold;
       }
 
@@ -483,7 +502,7 @@
             >
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link"
+            <a href="pagos.html" class="nav-link"
               ><i class="fas fa-credit-card"></i> Pagar en Línea</a
             >
           </li>
@@ -530,7 +549,7 @@
                   Ahora puedes realizar tus pagos de mantenimiento en línea de forma
                   segura y rápida.
                 </p>
-                <button class="banner-btn">Conoce más</button>
+                <button class="banner-btn"><a href="pagos.html">Conoce más</a></button>
               </div>
             </div>
             <div class="slide">
@@ -580,7 +599,7 @@
             <div class="shortcut-icon">
               <i class="fas fa-credit-card"></i>
             </div>
-            <h3>Pagar en Línea</h3>
+            <h3><a href="pagos.html">Pagar en Línea</a></h3>
             <p>Realiza tus pagos de manera segura.</p>
           </div>
 
@@ -619,9 +638,9 @@
                 <i class="fas fa-money-bill-wave"></i>
               </div>
               <div class="activity-content">
-                <h4>Pago realizado</h4>
-                <p>Mantenimiento mensual - $1,500.00 MXN</p>
-                <span class="activity-time">Hace 2 días</span>
+                <h4>Último pago realizado</h4>
+                <p>Mantenimiento mensual septiembre- $1,500.00 MXN</p>
+                <span class="activity-time">Hace 5 días</span>
               </div>
             </div>
 
@@ -657,7 +676,7 @@
           <div class="summary-card">
             <div class="summary-item">
               <span class="summary-label">Saldo Actual</span>
-              <span class="summary-value">$1,500.00 MXN</span>
+              <span class="summary-value">$3,000.00 MXN</span>
             </div>
             <div class="summary-item">
               <span class="summary-label">Próximo Vencimiento</span>
@@ -665,7 +684,7 @@
             </div>
             <div class="summary-item">
               <span class="summary-label">Estado</span>
-              <span class="summary-status paid">Al corriente</span>
+              <span class="summary-status paid">Pago inmediato requerido</span>
             </div>
             <button class="summary-btn">Ver Detalles</button>
           </div>
@@ -807,5 +826,6 @@
     </script>
   </body>
 </html>
+
 
 
