@@ -10,6 +10,11 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
       body {
         display: flex;
         flex-direction: column;
@@ -24,6 +29,7 @@
         position: sticky;
         top: 0;
         z-index: 1000;
+        width: 100%;
       }
 
       .nav-container {
@@ -32,6 +38,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        width: 100%;
       }
 
       .nav-logo {
@@ -95,6 +102,9 @@
         padding: 2rem;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin: 2rem auto;
+        flex: 1;
+        width: 98%;
       }
 
       h1,
@@ -182,6 +192,7 @@
         padding: 1rem;
         font-size: 0.9rem;
         border-top: 2px solid #2d5c27;
+        width: 100%;
       }
 
        @media screen and (max-width: 768px) {
@@ -308,3 +319,4 @@ document.addEventListener("click", function (event) {
     <script type="text/babel" src="metodo-pago.js"></script>
   </body>
 </html>
+
