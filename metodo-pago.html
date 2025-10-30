@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Método de pago - Residencial Los Robles</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: #f5f7f9;
+      }
+
+      .navbar {
+        background-color: #2d5c27;
+        padding: 0.5rem 1rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        color: white;
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+
+      .nav-logo .logo-img {
+        height: 40px;
+        margin-right: 10px;
+        border-radius: 5px;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 1.5rem;
+      }
+
+      .nav-link {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-link.logout {
+        color: #ff6b6b;
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+      }
+
+      .bar {
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        margin: 3px 0;
+        transition: 0.3s;
+      }
+
+      main {
+        max-width: 600px;
+        margin: 6rem auto 4rem auto; 
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1,
+      h2 {
+        color: #2d5c27;
+        margin-bottom: 1rem;
+      }
+
+      .section-title {
+        border-bottom: 2px solid #2d5c27;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.3rem;
+        font-weight: bold;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 0.7rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1rem;
+      }
+
+      .row {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .row input {
+        flex: 1;
+      }
+
+      .card-icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .card-icons img {
+        height: 35px;
+      }
+
+      button {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .btn-save {
+        background-color: #2d5c27;
+        color: white;
+        margin-bottom: 1rem;
+      }
+
+      .btn-save:hover {
+        background-color: #256320;
+      }
+
+      .btn-cancel {
+        background-color: #ccc;
+      }
+
+      .btn-cancel:hover {
+        background-color: #999;
+      }
+
+      footer {
+        margin-top: auto;
+        background-color: #f0f0f0;
+        color: #444;
+        text-align: center;
+        padding: 1rem;
+        font-size: 0.9rem;
+        border-top: 2px solid #2d5c27;
+      }
+
+       @media screen and (max-width: 768px) {
+        .hamburger {
+          display: flex;
+        }
+
+        .nav-menu {
+          position: fixed;
+          left: -100%;
+          top: 60px;
+          flex-direction: column;
+          background-color: #2d5c27;
+          width: 100%;
+          text-align: center;
+          transition: 0.3s;
+          box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+          padding: 1rem 0;
+          gap: 0;
+        }
+
+        .nav-menu.active {
+          left: 0;
+        }
+
+        .nav-item {
+          margin: 0.5rem 0;
+        }
+
+        .info-section {
+          grid-template-columns: 1fr;
+        }
+
+        .shortcuts-grid {
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .shortcuts-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .banner h2 {
+          font-size: 1.5rem;
+        }
+
+        .banner p {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <img
+            src="./Robles connect.jpg"
+            alt="Logo Robles Connect"
+            class="logo-img"
+          />
+          <span>Los Robles Residencial</span>
+        </div>
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item">
+            <a href="homepage.html" class="nav-link active">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Estado de Cuenta</a>
+          </li>
+          <li class="nav-item">
+            <a href="metodo-pago.html" class="nav-link">Pagar en Línea</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Transparencia</a>
+          </li>
+          <li class="nav-item">
+            <a href="login.html" class="nav-link logout">Cerrar Sesión</a>
+          </li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <div id="payment-root"></div>
+    </main>
+
+    <script>
+        const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("nav-menu");
+
+hamburger.addEventListener("click", function () {
+  navMenu.classList.toggle("active");
+  hamburger.classList.toggle("active");
+});
+
+document.querySelectorAll(".nav-link").forEach((link) => {
+  link.addEventListener("click", function () {
+    navMenu.classList.remove("active");
+    hamburger.classList.remove("active");
+  });
+});
+
+document.addEventListener("click", function (event) {
+  if (!event.target.closest(".nav-container")) {
+    navMenu.classList.remove("active");
+    hamburger.classList.remove("active");
+  }
+});
+
+    </script>
+
+    <footer>
+      <p>Residencial Los Robles © 2025. Todos los derechos reservados.</p>
+    </footer>
+
+    <script type="text/babel" src="metodo-pago.js"></script>
+  </body>
+</html>
