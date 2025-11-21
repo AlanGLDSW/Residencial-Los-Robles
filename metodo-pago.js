@@ -85,9 +85,15 @@ function MetodoPago() {
       return;
     }
 
-    localStorage.setItem("metodoPago", JSON.stringify(formData));
+    const metodosExistentes = JSON.parse(localStorage.getItem("metodosPago")) || [];
+    
+    const nuevosMetodos = [...metodosExistentes, formData];
+    
+    localStorage.setItem("metodosPago", JSON.stringify(nuevosMetodos));
+    localStorage.setItem("metodoPagoSeleccionado", JSON.stringify(formData));
+
     alert("Método de pago guardado exitosamente.");
-    window.location.href = "homepage.html";
+    window.location.href = "pagos.html"; 
   };
 
   const handleCancelar = () => {
@@ -241,3 +247,4 @@ function MetodoPago() {
 }
 
 ReactDOM.render(<MetodoPago />, document.getElementById("payment-root"));
+
