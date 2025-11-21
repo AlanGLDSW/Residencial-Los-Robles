@@ -108,11 +108,13 @@ const LoginForm = () => {
         return;
       }
 
+      setTimeout(() => {
 
-        localStorage.setItem("currentUser", JSON.stringify({ nombre: userData.nombre }));
+    localStorage.setItem("currentUser", JSON.stringify({ nombre: userData.nombre }));
 
-        window.location.href = "homepage.html";
-      }, 1000);
+    window.location.href = "homepage.html";
+}, 1000);
+        
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
       setErrors({ submit: "Error al iniciar sesión. Intenta nuevamente." });
@@ -230,6 +232,7 @@ ReactDOM.render(
   React.createElement(LoginForm),
   document.getElementById("login-root")
 );
+
 
 
 
