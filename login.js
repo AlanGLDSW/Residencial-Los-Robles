@@ -108,7 +108,6 @@ const LoginForm = () => {
         return;
       }
 
-      console.log("Inicio de sesión exitoso:", userData);
 
       setTimeout(() => {
         alert("¡Inicio de sesión exitoso! Bienvenido " + userData.nombre);
@@ -234,4 +233,5 @@ ReactDOM.render(
   React.createElement(LoginForm),
   document.getElementById("login-root")
 );
+
 
