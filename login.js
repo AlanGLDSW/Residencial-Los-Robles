@@ -109,9 +109,6 @@ const LoginForm = () => {
       }
 
 
-      setTimeout(() => {
-        alert("¡Inicio de sesión exitoso! Bienvenido " + userData.nombre);
-
         localStorage.setItem("currentUser", JSON.stringify({ nombre: userData.nombre }));
 
         window.location.href = "homepage.html";
@@ -233,5 +230,6 @@ ReactDOM.render(
   React.createElement(LoginForm),
   document.getElementById("login-root")
 );
+
 
 
