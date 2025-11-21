@@ -142,11 +142,6 @@
     cursor: pointer;
     }
 
-    .btn-pagar:hover {
-    background-color: #e6d822;
-    color: black;
-    text-decoration: underline;
-    }
     .btn-pagar a {
       text-decoration: none;
       color: white;
@@ -157,6 +152,13 @@
       color: black;
       font-weight: 500;
     }
+
+    .btn-pagar:hover {
+    background-color: #e6d822;
+    color: black;
+    text-decoration: underline;
+    }
+
     .formulario-section {
     margin-top: 40px;
     }
@@ -218,6 +220,126 @@
       font-weight: 600;
     }
 
+    .metodos-guardados-section {
+      margin-top: 40px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      border: 2px solid #e9ecef;
+    }
+
+    .no-metodos {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+    }
+
+    .btn-agregar-metodo {
+      background: #185827;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 15px;
+      display: block;
+      width: 100%;
+    }
+
+    .btn-agregar-metodo:hover {
+      background: #258b39;
+    }
+
+    .lista-metodos {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .metodo-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border: 2px solid #e9ecef;
+      border-radius: 10px;
+      background: white;
+      transition: all 0.3s ease;
+    }
+
+    .metodo-card:hover {
+      border-color: #007bff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .metodo-card.seleccionado {
+      border-color: #0c3b17;
+      background: #f8fff9;
+    }
+
+    .metodo-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .metodo-tipo {
+      background: #6c757d;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .metodo-details p {
+      margin: 5px 0;
+      color: #666;
+    }
+
+    .metodo-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-usar {
+      background: #007bff;
+      color: white;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-eliminar {
+      background: #dc3545;
+      color: white;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-usar:hover {
+      background: #0056b3;
+    }
+
+    .btn-eliminar:hover {
+      background: #c82333;
+    }
+
+    .metodo-seleccionado-info {
+      background: #e7f3ff;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 15px 0;
+      border-left: 4px solid #007bff;
+    }
+
+
 @media screen and (max-width: 768px) {
         .hamburger {
           display: flex;
@@ -251,6 +373,21 @@
 
         .shortcuts-grid {
           grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+
+        .metodo-card {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 15px;
+        }
+        
+        .metodo-actions {
+          flex-direction: row;
+          width: 100%;
+        }
+        
+        .btn-usar, .btn-eliminar {
+          flex: 1;
         }
       }
 
@@ -289,7 +426,7 @@
             alt="Logo Robles Connect"
             class="logo-img"
           />
-          </a>
+        </a>
           <span>Los Robles residencial</span>
         </div>
         <ul class="nav-menu" id="nav-menu">
@@ -367,15 +504,25 @@
           <tr>
             <td>Octubre 2025</td>
             <td>$1,500.00</td>
-            <td><button class="btn-pagar"><a href="metodo-pago.html">Pagar ahora</a> </button></td>
+            <td><button class="btn-pagar"><a href="metodo-pago.html">Pagar ahora</a></button></td>
           </tr>
           <tr>
             <td>Noviembre 2025</td>
             <td>$1,500.00</td>
-            <td><button class="btn-pagar"><a href="metodo-pago.htlm">Pagar ahora</a> </button></td>
+            <td><button class="btn-pagar"><a href="metodo-pago.html">Pagar ahora</a></button></td>
           </tr>
         </tbody>
       </table>
+    </section>
+
+    <section class="metodos-guardados-section">
+      <h3>Métodos de pago guardados</h3>
+      <div id="metodos-guardados-container">
+
+      </div>
+      <button class="btn-agregar-metodo" onclick="window.location.href='metodo-pago.html'">
+        Agregar nuevo método de pago
+      </button>
     </section>
 
     <section class="formulario-section">
@@ -420,30 +567,122 @@
     </section>
 
     <script type="text/babel" src="pagos.js"></script>
+      <script>
+      function detectarTipoTarjeta(numero) {
+        if (/^4/.test(numero)) return "Visa";
+        if (/^5[1-5]/.test(numero)) return "MasterCard";
+        if (/^3[47]/.test(numero)) return "American Express";
+        return "Tarjeta";
+      }
 
-    <script>
-          const hamburger = document.getElementById("hamburger");
-          const navMenu = document.getElementById("nav-menu");
+      function cargarMetodosGuardados() {
+        const container = document.getElementById('metodos-guardados-container');
+        const metodos = JSON.parse(localStorage.getItem('metodosPago')) || [];
+        const metodoSeleccionado = JSON.parse(localStorage.getItem('metodoPagoSeleccionado'));
 
-          hamburger.addEventListener("click", function () {
-            navMenu.classList.toggle("active");
-            hamburger.classList.toggle("active");
+        if (metodos.length === 0) {
+          container.innerHTML = `
+            <div class="no-metodos">
+              <p>No tienes métodos de pago guardados. Agrega uno para pagar más rápido.</p>
+            </div>
+          `;
+          return;
+        }
+
+        let html = '<div class="lista-metodos">';
+        metodos.forEach((metodo, index) => {
+          const esSeleccionado = metodoSeleccionado && 
+                                metodoSeleccionado.numeroTarjeta === metodo.numeroTarjeta;
+          const tipoTarjeta = detectarTipoTarjeta(metodo.numeroTarjeta);
+          
+          html += `
+            <div class="metodo-card ${esSeleccionado ? 'seleccionado' : ''}">
+              <div class="metodo-info">
+                <div class="metodo-header">
+                  <h4>💳 ${metodo.nombreTitular}</h4>
+                  <span class="metodo-tipo">${tipoTarjeta}</span>
+                </div>
+                <div class="metodo-details">
+                  <p><strong>Número:</strong> **** **** **** ${metodo.numeroTarjeta.slice(-4)}</p>
+                  <p><strong>Expira:</strong> ${metodo.expiracion}</p>
+                  <p><strong>Dirección:</strong> ${metodo.calle}, ${metodo.colonia}</p>
+                </div>
+              </div>
+              <div class="metodo-actions">
+                <button class="btn-usar" onclick="seleccionarMetodo(${index})">
+                  ${esSeleccionado ? '✓ Seleccionado' : 'Usar'}
+                </button>
+                <button class="btn-eliminar" onclick="eliminarMetodo(${index})">
+                  🗑️ Eliminar
+                </button>
+              </div>
+            </div>
+          `;
+        });
+        html += '</div>';
+
+        if (metodoSeleccionado) {
+          html = `
+            <div class="metodo-seleccionado-info">
+              <p><strong>Método seleccionado:</strong> ${metodoSeleccionado.nombreTitular} - **** ${metodoSeleccionado.numeroTarjeta.slice(-4)}</p>
+            </div>
+          ` + html;
+        }
+
+        container.innerHTML = html;
+      }
+
+      function seleccionarMetodo(index) {
+        const metodos = JSON.parse(localStorage.getItem('metodosPago')) || [];
+        if (metodos[index]) {
+          localStorage.setItem('metodoPagoSeleccionado', JSON.stringify(metodos[index]));
+          alert('Método de pago seleccionado correctamente');
+          cargarMetodosGuardados();
+        }
+      }
+
+      function eliminarMetodo(index) {
+        if (confirm('¿Estás seguro de que quieres eliminar este método de pago?')) {
+          const metodos = JSON.parse(localStorage.getItem('metodosPago')) || [];
+          const metodoAEliminar = metodos[index];
+          const metodoSeleccionado = JSON.parse(localStorage.getItem('metodoPagoSeleccionado'));
+          
+          if (metodoSeleccionado && metodoSeleccionado.numeroTarjeta === metodoAEliminar.numeroTarjeta) {
+            localStorage.removeItem('metodoPagoSeleccionado');
+          }
+          
+          metodos.splice(index, 1);
+          localStorage.setItem('metodosPago', JSON.stringify(metodos));
+          cargarMetodosGuardados(); 
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        cargarMetodosGuardados();
+        
+        const hamburger = document.getElementById("hamburger");
+        const navMenu = document.getElementById("nav-menu");
+
+        hamburger.addEventListener("click", function () {
+          navMenu.classList.toggle("active");
+          hamburger.classList.toggle("active");
+        });
+
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.addEventListener("click", function () {
+            navMenu.classList.remove("active");
+            hamburger.classList.remove("active");
           });
+        });
 
-          document.querySelectorAll(".nav-link").forEach((link) => {
-            link.addEventListener("click", function () {
-              navMenu.classList.remove("active");
-              hamburger.classList.remove("active");
-            });
-          });
-
-          document.addEventListener("click", function (event) {
-            if (!event.target.closest(".nav-container")) {
-              navMenu.classList.remove("active");
-              hamburger.classList.remove("active");
-            }
-          });
-      </script>
+        document.addEventListener("click", function (event) {
+          if (!event.target.closest(".nav-container")) {
+            navMenu.classList.remove("active");
+            hamburger.classList.remove("active");
+          }
+        });
+      });
+    </script>
 
   </main>
 
@@ -453,7 +692,3 @@
 
 </body>
 </html>
-
-
-
-
