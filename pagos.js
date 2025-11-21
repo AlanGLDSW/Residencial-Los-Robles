@@ -10,10 +10,32 @@ const Pagos = ({ userId }) => {
   ]);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [cuotaSeleccionada, setCuotaSeleccionada] = useState(null);
+  const [metodoPago, setMetodoPago] = useState("Mercado Pago");
 
   const manejarPago = (cuota) => {
     setCuotaSeleccionada(cuota);
     setMostrarFormulario(true);
+  };
+
+  const manejarConfirmarPago = (e) => {
+    e.preventDefault();
+
+    switch(metodoPago) {
+      case "Mercado Pago":
+        window.location.href = "/procesar-pago-mercado-pago";
+        break;
+      case "PayPal":
+        window.location.href = "/procesar-pago-paypal";
+        break;
+      case "Tarjeta de crédito":
+        window.location.href = "/procesar-pago-tarjeta-credito";
+        break;
+      case "Tarjeta de débito":
+        window.location.href = "/procesar-pago-tarjeta-debito";
+        break;  
+      default:
+        window.location.href = "/metodo-pago-no-disponible";  
+    }
   };
 
   return (
@@ -60,9 +82,12 @@ const Pagos = ({ userId }) => {
             Estás por pagar la cuota de <b>{cuotaSeleccionada.periodo}</b> por un
             monto de <b>${cuotaSeleccionada.monto.toFixed(2)}</b>
           </p>
-          <form>
+          <form onSubmit={manejarConfirmarPago}>
             <label>Método de pago:</label>
-            <select>
+            <select 
+              value={metodoPago} 
+              onChange={(e) => setMetodoPago(e.target.value)}
+            >
               <option>Mercado Pago</option>
               <option>PayPal</option>
               <option>Tarjeta de crédito</option>
